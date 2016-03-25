@@ -11,8 +11,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Gregwar\Captcha\CaptchaBuilder;
 use App\Login;
+
 define('VERiFYCODE_ERROR', 0xA001);    // 验证码错误
 define('ACCOUNT_ERROR', 0xA002);    // 用户名或密码错误
+
 class LoginController extends Controller
 {
     public $builder;
@@ -24,29 +26,45 @@ class LoginController extends Controller
         $this->builder = new CaptchaBuilder;
     }
 
-
+    /**
+     * login page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index() {
         return view('admin.login');
     }
 
-
+    /**
+     * 处理  login数据
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function do_login( Request $request ) {
         $account  = trim($request->input('account'));
         $password = md5(trim($request->input('password')));
         $verifycode = trim($request->input('verifycode'));
+
         if(empty($verifycode) || $request->session()->get('milkcaptcha') != $verifycode){
             return $this->json_response(VERiFYCODE_ERROR, '验证码错误' . $request->session()->get('milkcaptcha'));
         }
+
         $model = new Login();
         $user = $model->find_user($account, $password, 'admin');
         if($user){
+            // 写入session  记录登录信息
             $request->session()->put('admin_id', $user->id);
             $request->session()->put('admin_account', $user->account);
             return $this->json_response(0x0, 'success', url('admin/index'));
         }
+
         return $this->json_response(ACCOUNT_ERROR, '用户名或密码错误');
     }
 
+    /**
+     * 生成验证码图片
+     * @param Request $request
+     * @param $tmp.
+     */
     public function get_verifycode( Request $request, $tmp) {
         //生成验证码图片的Builder对象，配置相应属性
         $builder = $this->builder;

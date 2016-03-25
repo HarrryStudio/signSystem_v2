@@ -1,5 +1,5 @@
 $(function(){
-    $('button').on('click', function(){
+    $('#login-submit').on('click', function(){
 
         if( (verify = $('input[name="verifycode"]').val()) == '' ){
             return $('#error-p').text('验证码不能为空');
