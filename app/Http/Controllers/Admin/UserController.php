@@ -13,5 +13,13 @@ class UserController extends AdminController
 {
     public function index(){
 
+        return view('admin.login');
     }
+
+    public function addUser(){
+
+
+
+    }
+
 }
