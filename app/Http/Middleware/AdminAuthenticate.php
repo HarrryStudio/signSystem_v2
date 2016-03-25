@@ -23,9 +23,9 @@ class AdminAuthenticate
     public function handle($request, Closure $next)
     {
 
-        if(!$request->session()->has('admin_id')) {
+        /*if(!$request->session()->has('admin_id')) {
             return redirect('admin_login');
-        }
+        }*/
         return $next($request);
     }
 

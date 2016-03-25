@@ -7,11 +7,15 @@
  */
 
 namespace App\Http\Controllers\Admin;
-
+use App\User;
 
 class IndexController  extends AdminController
 {
     public function index(){
-        return view('admin.index');
+    	
+    	$model = new user();
+        $users= $model->select_all();
+        return view('admin.index', ['users' => $users]);
+        //return view('admin.index');
     }
 }

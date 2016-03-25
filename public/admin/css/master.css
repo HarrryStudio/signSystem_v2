@@ -1,0 +1,66 @@
+header, div, ul, li, span, a{
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	font-size: 14px;
+}
+
+#header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 4rem;
+	width: 100%;
+	background-color: #000;
+	color:#eee;
+	text-align: center;
+	clear:none;
+}
+
+#header .img-box{
+	float:left;
+}
+
+#mainbav{
+}
+
+#mainbav ul{
+	float: left;
+	font-size: 1.5rem;
+	font-weight: 800;
+}
+
+#mainbav ul li{
+	float: left;
+	display: inline-block;
+}
+
+#mainbav ul li a{
+	padding:0 2rem;
+	color: #eee;
+	text-decoration: none;
+	line-height: 4rem;		/* #header 的高度*/
+}
+
+#mainbav ul li:nth-child(1){
+	background-color: blue;
+}
+
+#mainbav ul li:hover{
+	background-color: blue;
+}
+
+#mainbav ul li:target{
+	background-color: green;
+}
+
+#ucenter{
+	float: right;
+}
+
+.container{
+	position: absolute;
+	top:4rem;			/* #header 的高度*/
+}
