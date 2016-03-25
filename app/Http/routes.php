@@ -12,10 +12,15 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+//    Route::get('/',function(){
+//        return 'Hello';
+//    });
 
     Route::get('/', ['middleware' => 'admin_auth', 'uses' => 'Admin\IndexController@index', 'as' => 'admin_index']);
 
     Route::get('admin_login',  ['uses' => 'Admin\LoginController@index', 'as' => 'admin_login']);
+
+    Route::get('captcha/{tmp}', 'Admin\LoginController@get_verifycode');
 
     Route::post('admin_post_login',  [
         'uses'       => 'Admin\LoginController@do_login',
