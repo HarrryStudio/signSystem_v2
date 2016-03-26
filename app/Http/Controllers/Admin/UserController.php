@@ -64,8 +64,8 @@ class UserController extends Controller
 
 //        $users = DB::table('users')->get();
 
-        $id = DB::table('users')->insertGetId(
-            ['name' => $user_name,
+        $id = DB::table('users')->insertGetId([
+            'name' => $user_name,
             'group_id' => $group_id,
             'stu_id' => $stuid,
             'class' => $class,
@@ -75,25 +75,13 @@ class UserController extends Controller
             'address' => $address
             ]);
 
+        $id = DB::table('login')->insertGetId([
+            'account' => $user_name,
+            'password' => md5($pasd),
+        ]);
 
         $users = DB::table('users')->get();//实例化数据表，并读取全部数据
-//        $users = Users::all();
         return view('admin.showUsers',compact('users'));//返回全部数据给视图
-//        return view('admin.create');
-
-        /*        $user_model = new Users();
-                $user_model->name = "haha";
-                $user_model->save();*/
-
-
-//        $user_model->name = $user_name;
-//        $user_model->group='4';
-//        $user_model->stu_id=$stuid;
-//        $user_model->class=$class;
-//        $user_model->phone=$phone;
-//        $user_model->email=$email;
-//        $user_model->qq=$qq;
-//        $user_model->address=$address;
 
     }
 

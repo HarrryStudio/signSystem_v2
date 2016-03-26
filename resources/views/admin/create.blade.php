@@ -1,23 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>添加用户</title>
+@extends('admin.master')
+
+@section('title')
+    添加用户
+@endsection
+
+@section('head')
     <link rel="stylesheet" href="../admin/css/addUsers.css">
     <script type="text/javascript" src="../static/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../admin/js/addUsers.js"></script>
-</head>
-<body>
+@endsection
 
-<div id="addUser">
-    <h1 id="title">Add Users Web Page</h1>
-    <br>
-    <br>
-    <hr>
-    <div id="info-wrap">
-        <form action='{{ url('admin/addUser') }}' method="post">
-            <table id="info-table">
-                <tbody>
+@section('content')
+    <div id="addUser">
+        <br>
+        <h1 id="title">Add Users Web Page</h1>
+        <br>
+        <hr>
+        <div id="info-wrap">
+            <form action='{{ url('admin/addUser') }}' method="post">
+                <table id="info-table">
+                    <tbody>
                     <tr>
                         <td><label for="userName">用户名：</label></td>
                         <td><input type="text" name="userName" id="userName" placeholder="用户名"></td>
@@ -63,25 +65,14 @@
                         <td><label for="address">家庭地址：</label></td>
                         <td><input name="address" id="address"></td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
-            <div id="btn-wrap">
-                <button id="submit">添加</button>
-                <button id="resetInfo">重置</button>
-            </div>
-
-        </form>
-        <br/>
-        <br/>
-        <br/>
+                <div id="btn-wrap">
+                    <input id="submit" type="submit" value="添加">
+                    <input id="reset" type="reset" value="重置">
+                </div>
+            </form>
+        </div>
     </div>
-    <br/>
-    <br/>
-    <br/>
-</div>
-
-
-
-</body>
-</html>
+@stop

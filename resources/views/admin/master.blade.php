@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../admin/css/master.css">
 
     <script type="text/javascript" src="../static/jquery-1.10.2.min.js"></script>
-    @section('header')
+    @section('head')
 		{{--myself link--}}
     @show
 </head>
