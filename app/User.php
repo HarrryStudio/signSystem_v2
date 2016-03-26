@@ -31,8 +31,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function select_all(){
-        $user = $this->select();
+    public function select_all($where = "1=1"){
+        $user = $this->where($where)->select();
         return $user;
     }
+
 }

@@ -13,8 +13,11 @@ class IndexController  extends AdminController
 {
     public function index(){
     	
-    	$model = new user();
-        $users= $model->select_all();
+    	// $model = new user();
+     //    $users= $model->select_all();
+    	$users = array(
+    			'id'=>'1'
+    		);
         return view('admin.index', ['users' => $users]);
         //return view('admin.index');
     }
