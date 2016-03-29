@@ -46,6 +46,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('selectGroupUsers/{id}','GroupController@selectGroupUsers');
         Route::get('createGroup/{name}','GroupController@createGroup');
         Route::get('updateGroup/{id}/{name}','GroupController@updateGroup');
+        Route::get('delGroup/{id}','GroupController@delGroup');
+        Route::get('changeGroup/{u_id}/{group_id}','GroupController@changeGroup');
+        
 
         Route::get('user', ['uses' => 'UserController@index', 'as' => 'admin_user']);
 
