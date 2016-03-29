@@ -8,11 +8,10 @@
 
 namespace App;
 
-use App\Http\Requests\Request;
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Model{
+class Group extends Model{
 
-    protected $table = 'user';
+    protected $table = 'group';
 
 }

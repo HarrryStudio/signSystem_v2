@@ -57,10 +57,12 @@ html{
 }
 
 #ucenter{
+
 	float: right;
 }
 
 .container{
+	width: 100%;
 	position: absolute;
 	top:4rem;			/* #header 的高度*/
 }

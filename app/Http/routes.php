@@ -49,12 +49,13 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('user', ['uses' => 'UserController@index', 'as' => 'admin_user']);
 
-        Route::get('showUsers', 'UserController@showUsers');//显示用户
-
         Route::get('create', 'UserController@create');//创建用户
 
         Route::post('addUser', 'UserController@addUsers');//添加用户
 
+        Route::get('showUsers', 'UserController@showUsers');//显示用户
+
+        Route::get('delete','UserController@delUser');
     });
 
 });
