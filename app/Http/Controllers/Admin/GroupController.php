@@ -98,15 +98,20 @@ class GroupController extends Controller
      * @param int group_id： 目标组id
      * @return json
      */
-    public function changeGroup($u_id,$group_id){
-        $data = DB::table('users')
+    //$.post('http://signsystem.cn:81/admin/changeGroup',$('input[type=checkbox]:checked').serialize()+"&group_id=3",function(data){console.log(data)})
+    public function changeGroup(Request $request){
+        return $request->get('group_id');
+        $ids = $request->get('ids');
+        $group_id = $request->get('group_id');
+
+        foreach ($ids as $key => $value) {
+            $data = DB::table('users')
                     ->where('id',$u_id)
                     ->update(array('group_id'=>$group_id,'updated_at'=>time()));
+            if(!$data)
+                return $this->json_response('UPDATE_ERROR','部分更新失败，请核对后重试');
+        }
 
-        if($data)
-            return $this->json_response(0,'更新成功');         
-            
-        return $this->json_response('UPDATE_ERROR','更新失败，请核对后重试');
-
+        return $this->json_response(0,'更新成功');         
     }
 }

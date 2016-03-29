@@ -23,6 +23,28 @@
 		$(function(){
 			//alert($('#title').html());
 
+			//创建换组下拉列表
+			var groupSelect = "<select id='groupSelect'> <option value='0'>移动至</option>";
+			//遍历 #list 中数据来获取组id,组名称
+			$('#list>li').each(function(i,li){
+				//alert($(this).html());
+				groupSelect+="<option value ="+$(li).find("span[class=id]").html()+">"+$(li).find("input[name=name]").val()+"</option>";
+			});
+
+			groupSelect+="</select>";
+			$('#toolbar').html(groupSelect);
+			$('#groupSelect').change(function(){
+				//alert($('#groupSelect').val());
+				if($('#groupSelect').val()==0)
+					return;
+				$.post('http://signsystem.cn:81/admin/changeGroup',$('input[type=checkbox]:checked').serialize()+"&group_id="+$('#groupSelect').val(),function(data){
+					//console.log(data)
+					alert(data);
+				});
+
+			});
+
+
 			//显示人员信息
 			$('.showList').click(function(){
 				var info = $(this).parent();
@@ -32,23 +54,15 @@
 				}
 					
 				$.get($(this).attr('url'), function(data){
-					//创建换组下拉列表
-					var groupSelect = "<select>";
-					//遍历 #list 中数据来获取组id,组名称
-					$('#list>li').each(function(i,li){
-						//alert($(this).html());
-						groupSelect+="<option value ="+$(li).find("span[name=id]")+">"+$(li).find("input[name=name]").val()+"</option>";
-					});
 
-					groupSelect+="</select>";
 	  				var str="";
 	  				$.each(data,function(i,item){
 	  					
-	  					                    str+="<p><input name='ids[]' type='checkbox'> <span>" + item.id + "</span>" + 
+	  					                    str+="<p><input name='ids[]' type='checkbox' value='"+item.id+"'> <span>" + item.id + "</span>" + 
 	  					                    "<span>" + item.name    + "</span>" +
 	  					                    "<span>" + item.group_id + "</span></p><hr/>";
 	  				});
-	  				var changGroup = "<p><input class='changGroupAll' type='checkbox'>"+groupSelect+"</p>";
+	  				var changGroup = "<p><input class='changGroupAll' type='checkbox'></p>";
 					info.find("div").html(changGroup+str);
 				});
 			});
@@ -109,11 +123,11 @@
 
 @section('content')
 	<h1 id="title">所有组别：</h1>	
-	<div id="info"></div>
+	<div id="toolbar"></div>
 	<ul id="list">
 		@foreach ($groups as $group)
 		   	<li>
-		   		<span name="id" class="id">id:{{ $group->id }}</span>
+		   		<span name="id" class="id">{{ $group->id }}</span>
 		   		<span>name:</span>
 		   		<input name="name" type="text" disabled="true" value="{{$group->name}}">
 		   		<button class="resetName" url="http://signsystem.cn:81/admin/updateGroup/{{$group->id}}">编辑</button>
