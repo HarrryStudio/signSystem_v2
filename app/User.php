@@ -1,39 +1,17 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: MrLiu
+ * Date: 2016/3/26
+ * Time: 8:56
+ */
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
-{
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+class User extends Model{
+
     protected $table = 'user';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    public function select_all($where = "1=1"){
-        $user = $this->where($where)->select();
-        return $user;
-    }
 
 }
