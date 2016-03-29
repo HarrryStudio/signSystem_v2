@@ -65,7 +65,7 @@ class GroupController extends Controller
     				->update(array('name'=>$name,'updated_at'=>time()));
 
     	if($data)
-    		return $this->json_response('','更新成功');			
+    		return $this->json_response(0,'更新成功');			
     	
 			
     	return $this->json_response('UPDATE_ERROR','更新失败，请核对后重试');
@@ -87,7 +87,7 @@ class GroupController extends Controller
 
         $data = DB::table('groups')->where('id',$id)->delete();
         if($data=1)
-             return $this->json_response(,'成功删除');
+             return $this->json_response(0,'成功删除');
 
         return $this->json_response('DELETE_ERROR','未知错误，删除失败');
     }
@@ -104,7 +104,7 @@ class GroupController extends Controller
                     ->update(array('group_id'=>$group_id,'updated_at'=>time()));
 
         if($data)
-            return $this->json_response('','更新成功');         
+            return $this->json_response(0,'更新成功');         
             
         return $this->json_response('UPDATE_ERROR','更新失败，请核对后重试');
 

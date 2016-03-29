@@ -44,10 +44,6 @@ html{
 	line-height: 4rem;		/* #header 的高度*/
 }
 
-#mainbav ul li:nth-child(1){
-	background-color: #7963DF;
-}
-
 #mainbav ul li:hover{
 	background-color: #86DB00;
 }
@@ -57,7 +53,6 @@ html{
 }
 
 #ucenter{
-
 	float: right;
 }
 
