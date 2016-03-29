@@ -5,7 +5,5 @@
 @stop
 
 @section('content')
-	<h1>12414</h1>
-	<p>{{$users=>'id'}}</p>
-
+	<h1>用户数：{{ $users->count}}</h1>	
 @stop

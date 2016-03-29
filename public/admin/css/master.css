@@ -45,11 +45,11 @@ html{
 }
 
 #mainbav ul li:nth-child(1){
-	background-color: blue;
+	background-color: #7963DF;
 }
 
 #mainbav ul li:hover{
-	background-color: blue;
+	background-color: #86DB00;
 }
 
 #mainbav ul li:target{
