@@ -60,6 +60,8 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('resetpasd','UserController@resetpasd');//重置密码
 
+//        Route::get('ind','UserController@xunhuan');//测试使用方法
+
     });
 
 });

@@ -8,8 +8,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,12 +18,10 @@ define('ALTER_ERROR', 0xE003);    // 保存失败
 
 class UserController extends Controller
 {
-
     //测试时使用弹出欢迎Laravel的欢迎页面
     public function index(){
         return view('welcome');
     }
-
     //创建用户的页面
     public function create(){
         $groups = DB::table('group')->get();
@@ -37,6 +33,7 @@ class UserController extends Controller
         //接受POST过来的数据
         //存入数据库
         //重定向
+
         $email_zz = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";//email正则
         $user_name_zz = "/^[A-Za-z0-9_\u4e00-\u9fa5]{3,15}$/";//用户名正则
         $user_pasd_zz = "/^[^\u4e00-\u9fa5\s]{6,20}$/";//密码正则
@@ -115,11 +112,11 @@ class UserController extends Controller
 //            DB::table('login')->where('status',0)-get();
 //        })->get();
         $users = DB::table('user')
+            ->select(['group.name as group_name','user.name', 'login.account','user.phone','user.class'])
             ->leftJoin('login', 'user.id', '=', 'login.user_id')
             ->leftJoin('group', 'user.group_id', '=', 'group.id')
-            ->where('login.status',0)
-            ->get(['group.name as group_name','user.name', 'login.account','user.phone','user.class'])
-            ;
+            ->where('login.status',0)->paginate(15);
+
 
         return view('admin.showUsers',compact('users'));//返回全部数据给视图
     }
@@ -239,7 +236,25 @@ class UserController extends Controller
             ];
             return $this->json_response(ALTER_ERROR,"失败咯~！",$data);
         }
-
     }
+
+
+
+
+    //测试使用  疯狂的向数据插入数据
+/*    public function xunhuan(){
+
+        for($i = 1;$i<=1000;$i++){
+            $user_id = DB::table('user')->insertGetId(
+                ['name'=>$i,'group_id'=>1]
+            );
+            DB::table('login')->insertGetId([
+                'user_id' => $user_id,
+                'account' => $i+"a",
+                'created_at' => time(),
+            ]);
+        }
+        return 'OK';
+    }*/
 
 }

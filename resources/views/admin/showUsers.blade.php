@@ -44,7 +44,13 @@
         </tbody>
     </table>
     </form>
+    <div id="page">
+        {!! $users->render() !!}
+    </div>
+
 @endsection
+
+
 
 {{--
 <!DOCTYPE html>
