@@ -2,29 +2,62 @@
 
 @section('head')
 	<style>
+		html{
+			font-size: 14px;
+		}
+		body{
+			font-size: 1rem;
+		}
 		#mainbav ul li:nth-child(3){
 			background-color: #86DB00;
 		}
 		#mainbav ul li:nth-child(1):hover{
 			background-color: #7963DF;
 		}
-
 		.showList[value="0"]{
 			background-color: #ccc;
 			color: #eee; 
+		}
+		#list li{
+			padding: 1rem 0;
+			text-align: center;
+		}
+		#list li:nth-child(even){
+			background-color: #D9EDF7;
+		}
+		#list li:nth-child(odd){
+			background-color: #DFF0D8;
 		}
 
 		#list li span{
 			margin-left:4rem;
 		}
+
+		input[name=name]{
+			width: 8rem;
+		}
+
+		.info{
+			margin-left: 30%;
+			text-align: left;
+		}
 	</style>
 
 	<script>
 		$(function(){
-			//alert($('#title').html());
+			//初始化查看人员按钮：人员为0，不可用
+			$('#list>li').each(function(i,li){
+				//console.log($(li).find(".showList").attr('value'));
+				if($(li).find(".showList").attr('value')==0){
+					$(li).find(".showList").attr("disabled", true);
+					$(li).find(".showList").attr("title", "该组无人员");
+
+					$(li).find(".delect").removeAttr("disabled");
+				}
+			});
 
 			//创建换组下拉列表
-			var groupSelect = "<select id='groupSelect'> <option value='0'>移动至</option>";
+			var groupSelect = "<span>分组移动：</span><select id='groupSelect'> <option value='0'>移动至</option>";
 			//遍历 #list 中数据来获取组id,组名称
 			$('#list>li').each(function(i,li){
 				//alert($(this).html());
@@ -34,18 +67,27 @@
 			groupSelect+="</select>";
 			$('#toolbar').html(groupSelect);
 			$('#groupSelect').change(function(){
-				//alert($('#groupSelect').val());
+				//当选中第一项（移动至）则直接退出
 				if($('#groupSelect').val()==0)
 					return;
-				$.post('http://signsystem.cn:81/admin/changeGroup',$('input[type=checkbox]:checked').serialize()+"&group_id="+$('#groupSelect').val(),function(data){
+				//当未选中任何人员时，提示，并退出
+				if($('input[type=checkbox]:checked').serialize()==""){
+					alert("未选中任何人员");
+					return;
+				}
+
+				$.post('http://signsystem.cn:81/admin/changeGroup',$('input[class=checkbox]:checked').serialize()+"&group_id="+$('#groupSelect').val(),function(data){
 					//console.log(data)
-					alert(data);
+					//alert(data.msg);
+					window.location.reload();
 				});
 
 			});
 
 
-			//显示人员信息
+			/**
+			*显示人员信息
+			*/
 			$('.showList').click(function(){
 				var info = $(this).parent();
 				if(info.find("div").html()!=""){
@@ -58,16 +100,18 @@
 	  				var str="";
 	  				$.each(data,function(i,item){
 	  					
-	  					                    str+="<p><input name='ids[]' type='checkbox' value='"+item.id+"'> <span>" + item.id + "</span>" + 
+	  					                    str+="<p><input class='checkbox' name='ids[]' type='checkbox' value='"+item.id+"'> <span>" + item.id + "</span>" + 
 	  					                    "<span>" + item.name    + "</span>" +
-	  					                    "<span>" + item.group_id + "</span></p><hr/>";
+	  					                    "<span>" + item.group_id + "</span></p>";
 	  				});
-	  				var changGroup = "<p><input class='changGroupAll' type='checkbox'></p>";
-					info.find("div").html(changGroup+str);
+	  				var checkAll = "<p><input class='checkAll' type='checkbox'><span>全选</span></p>";
+					info.find(".info").html(checkAll+str);
 				});
 			});
-			
-			//删除组别
+
+			/**
+			*删除组别
+			*/
 			$('.delect').click(function(){
 				//alert($(this).attr('url')+$(this).attr('value'));
 				if($(this).attr('value')!='0'){
@@ -75,15 +119,19 @@
 					return;
 				}
 
-				var parent = $(this).parent()
-				$.get($(this).attr('url'), function(data){
-					alert(data.msg);
-					parent.remove();
-				});
+				if(confirm("是否继续")){
+					var parent = $(this).parent()
+					$.get($(this).attr('url'), function(data){
+						alert(data.msg);
+						parent.remove();
+					});
+				}
 			});
 
 			var oldText = "";	//用于记录点击编辑时的文本
-			//编辑昵称
+			/**
+			*编辑昵称
+			*/
 			$('.resetName').click(function(){
 				var parent = $(this).parent();
 				//确定则提交数据，并退出
@@ -106,12 +154,26 @@
 				//编辑状态时，则改变样式
 				var parent = $(this).parent();
 				oldText = parent.find('input[type=text]').val();
-				//alert($(this).parent().find('input').val());
 
 				parent.find('input').removeAttr("disabled");
 				parent.find('input').focus().select();
 				$(this).text("提交");
-				//alert(parent.find('mark').find('input').text());
+			});
+
+			/**
+			*全选复选框事件
+			*/
+			$(document).on('change','.checkAll',function(){
+				console.log($(this)[0].checked);
+				if($(this)[0].checked){
+					console.log("选中");
+					console.log($(this).parent().parent().html());
+					$(this).parent().parent().find('input[class=checkbox]').attr("checked", true);
+				}
+				else{					
+					console.log("未选中");
+					$(this).parent().parent().find('input[class=checkbox]').removeAttr("checked");
+				}
 			});
 		});
 	</script>
@@ -122,22 +184,25 @@
 @stop
 
 @section('content')
-	<h1 id="title">所有组别：</h1>	
-	<div id="toolbar"></div>
+	<h1 id="title" style="padding-left:20%;">所有组别：</h1>	
+	<div id="toolbar" style="padding-left:30%;"></div>
 	<ul id="list">
 		@foreach ($groups as $group)
 		   	<li>
+		   		<span>id:</span>
 		   		<span name="id" class="id">{{ $group->id }}</span>
 		   		<span>name:</span>
-		   		<input name="name" type="text" disabled="true" value="{{$group->name}}">
+		   		<input name="name" type="text" disabled="true" value="{{$group->name}}" maxlength="8">
 		   		<button class="resetName" url="http://signsystem.cn:81/admin/updateGroup/{{$group->id}}">编辑</button>
 		   		<span class="count">人数：{{$group -> counts}}</span>
-		   		<button class="showList" value="{{$group -> counts}}" url="http://signsystem.cn:81/admin/selectGroupUsers/{{$group->id}}">查看人员（后边换ajax）</button>
-		   		<button class="delect" value="{{$group -> counts}}" url="http://signsystem.cn:81/admin/delGroup/{{$group->id}}">删除该组</button>
+		   		<button class="showList" value="{{$group -> counts}}" url="http://signsystem.cn:81/admin/selectGroupUsers/{{$group->id}}">查看人员</button>
+		   		<button class="delect" value="{{$group -> counts}}" disabled=true url="http://signsystem.cn:81/admin/delGroup/{{$group->id}}">删除该组</button>
 				
 		   		<div class="info"></div>
 		   	</li>
 		@endforeach
 	</ul>		
+	<script>
 
+	</script>
 @stop

@@ -94,17 +94,17 @@ class GroupController extends Controller
 
     /**
      * 修改用户组别
-     * @param int u_id：用户id
+     * @param int[] ids：用户id组
      * @param int group_id： 目标组id
      * @return json
      */
     //$.post('http://signsystem.cn:81/admin/changeGroup',$('input[type=checkbox]:checked').serialize()+"&group_id=3",function(data){console.log(data)})
     public function changeGroup(Request $request){
-        return $request->get('group_id');
-        $ids = $request->get('ids');
+        //return $request->get('group_id');  
+        $ids = $request->get('ids');  
         $group_id = $request->get('group_id');
 
-        foreach ($ids as $key => $value) {
+        foreach ($ids as $key => $u_id) {
             $data = DB::table('users')
                     ->where('id',$u_id)
                     ->update(array('group_id'=>$group_id,'updated_at'=>time()));
