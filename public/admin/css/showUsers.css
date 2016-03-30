@@ -1,0 +1,23 @@
+*{
+    font-family: "Microsoft YaHei";
+    padding:0;
+    margin: 0;
+}
+h1{
+    text-align: center;
+    font-weight: 100;
+}
+table{
+    width: 70%;
+    margin: 0 auto;
+}
+table tbody tr{
+    height: 44px;
+    max-width: 1000px;
+}
+table tbody tr th span{
+    padding:0 15px;
+}
+table tbody tr td span{
+    padding:0 10px;
+}
