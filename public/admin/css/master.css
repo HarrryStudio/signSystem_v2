@@ -17,6 +17,7 @@ html{
 	color:#eee;
 	text-align: center;
 	clear:none;
+	z-index: 999;	/*防止下方内容过多时，滚动遮盖导航栏*/
 }
 
 #header .img-box{

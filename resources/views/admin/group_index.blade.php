@@ -57,7 +57,7 @@
 			});
 
 			//创建换组下拉列表
-			var groupSelect = "<span>分组移动：</span><select id='groupSelect'> <option value='0'>移动至</option>";
+			var groupSelect = "<span>所选人员移动至移动：</span><select id='groupSelect'> <option value='0'></option>";
 			//遍历 #list 中数据来获取组id,组名称
 			$('#list>li').each(function(i,li){
 				//alert($(this).html());
@@ -65,7 +65,7 @@
 			});
 
 			groupSelect+="</select>";
-			$('#toolbar').html(groupSelect);
+			$('#toolbar').append(groupSelect);
 			$('#groupSelect').change(function(){
 				//当选中第一项（移动至）则直接退出
 				if($('#groupSelect').val()==0)
@@ -164,16 +164,32 @@
 			*全选复选框事件
 			*/
 			$(document).on('change','.checkAll',function(){
-				console.log($(this)[0].checked);
+				//console.log($(this)[0].checked);
 				if($(this)[0].checked){
-					console.log("选中");
 					console.log($(this).parent().parent().html());
-					$(this).parent().parent().find('input[class=checkbox]').attr("checked", true);
+					$(this).parent().parent().find('input[class=checkbox]').each(function(){
+						this.checked = true;
+					});
 				}
 				else{					
-					console.log("未选中");
-					$(this).parent().parent().find('input[class=checkbox]').removeAttr("checked");
+					$(this).parent().parent().find('input[class=checkbox]').each(function(){
+						this.checked = false;
+					});				}
+			});
+
+			/**
+			*	创建组
+			*/
+			$("#createGroup").click(function(){
+				var name = prompt("输入名称");
+				if(name==null){
+					return;
 				}
+				var url = "{{url('/admin/createGroup')}}"+"/"+name;
+				$.get(url, function(data){
+					alert(data.msg);
+					window.location.reload();
+				});
 			});
 		});
 	</script>
@@ -185,7 +201,9 @@
 
 @section('content')
 	<h1 id="title" style="padding-left:20%;">所有组别：</h1>	
-	<div id="toolbar" style="padding-left:30%;"></div>
+	<div id="toolbar" style="padding-left:30%;">
+		<button id="createGroup">创建组</button>
+	</div>
 	<ul id="list">
 		@foreach ($groups as $group)
 		   	<li>
@@ -193,10 +211,10 @@
 		   		<span name="id" class="id">{{ $group->id }}</span>
 		   		<span>name:</span>
 		   		<input name="name" type="text" disabled="true" value="{{$group->name}}" maxlength="8">
-		   		<button class="resetName" url="http://signsystem.cn:81/admin/updateGroup/{{$group->id}}">编辑</button>
+		   		<button class="resetName" url="{{url('/admin/updateGroup')}}/{{$group->id}}">编辑</button>
 		   		<span class="count">人数：{{$group -> counts}}</span>
-		   		<button class="showList" value="{{$group -> counts}}" url="http://signsystem.cn:81/admin/selectGroupUsers/{{$group->id}}">查看人员</button>
-		   		<button class="delect" value="{{$group -> counts}}" disabled=true url="http://signsystem.cn:81/admin/delGroup/{{$group->id}}">删除该组</button>
+		   		<button class="showList" value="{{$group -> counts}}" url="{{url('/admin/selectGroupUsers')}}/{{$group->id}}">查看人员</button>
+		   		<button class="delect" value="{{$group -> counts}}" disabled=true url="{{url('/admin/delGroup')}}/{{$group->id}}">删除该组</button>
 				
 		   		<div class="info"></div>
 		   	</li>
