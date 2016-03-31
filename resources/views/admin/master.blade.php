@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
-	<link rel="stylesheet" href="../admin/css/master.css">
-
-    <script type="text/javascript" src="../static/jquery-1.10.2.min.js"></script>
+	{{--<link rel="stylesheet" href="../admin/css/master.css">--}}
+	<link rel="stylesheet" href="{{asset('admin/css/master.css')}}">
+    <script type="text/javascript" src="{{asset('static/jquery-1.10.2.min.js')}}"></script>
     @section('head')
 		{{--myself link--}}
     @show

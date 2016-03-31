@@ -58,7 +58,14 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('showUsers', 'UserController@showUsers');//显示用户
 
-        Route::get('delete','UserController@delUser');
+        Route::get('delete/{account}','UserController@delUser');//删除用户逻辑删除
+
+        Route::get('update/{account}','UserController@update');//修改用户
+
+        Route::post('xiugai', 'UserController@alter');//保存修改用户
+
+        Route::post('resetpasd','UserController@resetpasd');//重置密码
+
     });
 
 });

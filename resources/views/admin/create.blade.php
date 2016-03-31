@@ -6,7 +6,6 @@
 
 @section('head')
     <link rel="stylesheet" href="../admin/css/addUsers.css">
-    <script type="text/javascript" src="../static/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../admin/js/addUsers.js"></script>
 @endsection
 
@@ -24,10 +23,6 @@
                         <td><label for="account">用户名：</label></td>
                         <td><input type="text" name="account" id="account" placeholder="名字的拼音"></td>
                     </tr>
-                    {{--<tr>--}}
-                        {{--<td><label for="pasd">密码：</label></td>--}}
-                        {{--<td><input type="text" name="pasd" id="pasd" placeholder="默认密码marchsoft@2016" value="marchsoft@2016"></td>--}}
-                    {{--</tr>--}}
                     <tr>
                         <td><label for="userName">姓名：</label></td>
                         <td><input type="text" name="userName" id="userName" placeholder="名字"></td>
@@ -53,6 +48,9 @@
                                 <option>县官</option>
                             </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><span id="prompt-info" style="color: orangered"></span></td>
                     </tr>
 
                     {{--<tr>--}}
@@ -83,7 +81,7 @@
                 </table>
 
                 <div id="btn-wrap">
-                    <input id="submit" type="submit" value="添加">
+                    <input id="submit" type="button" value="添加">
                     <input id="reset" type="reset" value="重置">
                 </div>
             </form>
