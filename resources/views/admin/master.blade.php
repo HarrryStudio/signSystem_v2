@@ -19,9 +19,9 @@
 		<!--主导航-->
 		<nav id="mainbav">
 			<ul>
-				<li><a href="#">首页</a></li>
-				<li><a href="#">用户</a></li>
-				<li><a href="#">组别</a></li>
+				<li><a href="{{url('/admin/index')}}">首页</a></li>
+				<li><a href="{{url('/admin/user')}}">用户</a></li>
+				<li><a href="{{url('/admin/group')}}">组别</a></li>
 			</ul>
 		</nav>
 
