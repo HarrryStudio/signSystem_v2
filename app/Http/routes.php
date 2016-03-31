@@ -54,13 +54,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('delete/{account}','UserController@delUser');//删除用户逻辑删除
 
         Route::get('update/{account}','UserController@update');//修改用户
-//        Route::get('update/','UserController@update');//修改用户
 
         Route::post('xiugai', 'UserController@alter');//保存修改用户
 
         Route::post('resetpasd','UserController@resetpasd');//重置密码
-
-//        Route::get('ind','UserController@xunhuan');//测试使用方法
 
     });
 
