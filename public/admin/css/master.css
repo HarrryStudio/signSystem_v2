@@ -17,6 +17,7 @@ html{
 	color:#eee;
 	text-align: center;
 	clear:none;
+	z-index: 999;	/*防止下方内容过多时，滚动遮盖导航栏*/
 }
 
 #header .img-box{
@@ -44,12 +45,8 @@ html{
 	line-height: 4rem;		/* #header 的高度*/
 }
 
-#mainbav ul li:nth-child(1){
-	background-color: blue;
-}
-
 #mainbav ul li:hover{
-	background-color: blue;
+	background-color: #86DB00;
 }
 
 #mainbav ul li:target{
@@ -57,7 +54,6 @@ html{
 }
 
 #ucenter{
-
 	float: right;
 }
 

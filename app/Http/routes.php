@@ -41,7 +41,14 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('index', ['uses' => 'IndexController@index', 'as' => 'admin_index']);
 
+        //组别系列操作
         Route::get('group', ['uses' => 'GroupController@index', 'as' => 'admin_group']);
+        Route::get('selectGroupUsers/{id}','GroupController@selectGroupUsers');
+        Route::get('createGroup/{name}','GroupController@createGroup');
+        Route::get('updateGroup/{id}/{name}','GroupController@updateGroup');
+        Route::get('delGroup/{id}','GroupController@delGroup');
+        Route::post('changeGroup','GroupController@changeGroup');
+        
 
         Route::get('user', ['uses' => 'UserController@index', 'as' => 'admin_user']);
 
