@@ -1,0 +1,48 @@
+html{
+			font-size: 14px;
+		}
+		body{
+			font-size: 1rem;
+		}
+		#mainbav table tr:nth-child(3){
+			background-color: #86DB00;
+		}
+		#mainbav table tr:nth-child(1):hover{
+			background-color: #7963DF;
+		}
+		.showList[value="0"]{
+			background-color: #ccc;
+			color: #eee; 
+		}
+		#list{
+			margin: 1rem auto;
+			padding: 1rem;
+			border-collapse:collapse;
+			text-align: left;
+		}
+
+		#list tr{
+			line-height: 2.5rem;
+			text-align: center;
+		}
+
+		#list tr:nth-child(odd){
+			height: 2rem;
+			background-color: #DFF0D8;
+		}
+		
+		#list tr:nth-child(even){
+			background-color: #D9EDF7;
+		}
+
+		#list tr th{
+			padding:0 1.5rem;
+		}
+
+		input[name=name]{
+			width: 8rem;
+		}
+
+		.info{
+			text-align: left;
+		}
