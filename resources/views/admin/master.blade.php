@@ -30,18 +30,11 @@
 			<span>icon</span>
 		</div>
 	</header>
-	<!--侧边导航栏-->
-	<div id="subnav">
-	    @section('sidebar')
-			{{--侧边栏--}}
-	    @show
+
+	<div class="content">
+		{{--主体内容--}}
+	    @yield('content')
+		
 	</div>
-
-
-<div class="container">
-	{{--主体内容--}}
-    @yield('content')
-	
-</div>
 </body>
 </html>

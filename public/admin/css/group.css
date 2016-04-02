@@ -1,48 +1,101 @@
 html{
-			font-size: 14px;
-		}
-		body{
-			font-size: 1rem;
-		}
-		#mainbav table tr:nth-child(3){
-			background-color: #86DB00;
-		}
-		#mainbav table tr:nth-child(1):hover{
-			background-color: #7963DF;
-		}
-		.showList[value="0"]{
-			background-color: #ccc;
-			color: #eee; 
-		}
-		#list{
-			margin: 1rem auto;
-			padding: 1rem;
-			border-collapse:collapse;
-			text-align: left;
-		}
+		font-size: 14px;
+	}
+body{
+	font-size: 1rem;
+}
+#mainbav table tr:nth-child(3){
+	background-color: #86DB00;
+}
+#mainbav table tr:nth-child(1):hover{
+	background-color: #7963DF;
+}
 
-		#list tr{
-			line-height: 2.5rem;
-			text-align: center;
-		}
+#list .operation{		/*表格中默认操作文字样式*/
+	color: #7963DF;
+	text-decoration: underline;
+}
 
-		#list tr:nth-child(odd){
-			height: 2rem;
-			background-color: #DFF0D8;
-		}
-		
-		#list tr:nth-child(even){
-			background-color: #D9EDF7;
-		}
+#list .operation:hover{
+	color: #5cb85c;
+	-moz-transition:all .4s ease-in;
+	-webkit-transition:all .4s ease-in;
+	-o-transition:all .4s ease-in;
+	transition:all .4s ease-in;
+}
 
-		#list tr th{
-			padding:0 1.5rem;
-		}
+#list .showList[value="0"]{		/*当人数为零时，成灰色*/
+	color: #ccc;
+	font-size: .8rem;
+	cursor: default;
+}
+#list{
+	width: 100%;
+	margin: 1rem 0;
+	padding: 1rem;
+	border-collapse:collapse;
+	text-align: left;
+}
 
-		input[name=name]{
-			width: 8rem;
-		}
+#list tr{
+	line-height: 2.5rem;
+	text-align: center;
+}
 
-		.info{
-			text-align: left;
-		}
+#list tr:nth-child(odd){
+	height: 2rem;
+	background-color: #DFF0D8;
+}
+
+#list tr:nth-child(even){
+	background-color: #D9EDF7;
+}
+
+#list thead tr th{
+	padding:0 1.5rem;
+	font-weight: bold;
+}
+
+#list tr th{
+	padding:0 1.5rem;
+	font-weight: normal;
+}
+
+input:disabled, textarea:disabled {
+    color: #ccc;
+}
+
+input[name=name]{
+	width: 8rem;
+}
+
+.info{
+	text-align: left;
+}
+
+.address{
+	width: 4rem;
+	color: #8e8e8e;
+	font-size: .5rem;
+	line-height: 1rem;
+}
+
+
+.btn{
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 1rem;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor:pointer;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.btn-success{
+	color:#fff;
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+}

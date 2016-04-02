@@ -57,8 +57,20 @@ html{
 	float: right;
 }
 
-.container{
-	width: 100%;
+.content{
 	position: absolute;
+	width: 59%;			/**防止页面超出*/
 	top:4rem;			/* #header 的高度*/
+	margin: 0;
+	padding: 0 20%;
 }
+
+
+.clearfix:before, .clearfix:after { 
+	content: " "; 
+	display: table; 
+} 
+
+.clearfix:after { 
+	clear: both; 
+} 

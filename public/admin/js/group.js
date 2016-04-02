@@ -2,24 +2,24 @@ $(function(){
 			//初始化查看人员按钮：人员为0，不可用
 			$('#list>tbody>tr').each(function(i,tr){
 				console.log($(tr).find(".showList").attr('value'));
-				if($(tr).find(".showList").attr('value')==0){
-					$(tr).find(".showList").attr("disabled", true);
-					$(tr).find(".showList").attr("title", "该组无人员");
+				var showList = $(tr).find(".showList");
+				if(showList.attr('value')==0){
+					showList.attr("title", "该组无人员");
 
 					$(tr).find(".delect").removeAttr("disabled");
 				}
 			});
 
 			//创建换组下拉列表
-			var groupSelect = "<span>所选人员移动至移动：</span><select id='groupSelect'> <option value='0'></option>";
+			var groupSelect = "<option value='0'></option>";
 			//遍历 #list 中数据来获取组id,组名称
 			$('#list>tbody>tr:nth-child(odd)').each(function(i,li){
 				//alert($(this).html());
 				groupSelect+="<option value ="+$(li).find("span[class=id]").html()+">"+$(li).find("input[name=name]").val()+"</option>";
 			});
 
-			groupSelect+="</select>";
-			$('#toolbar').append(groupSelect);
+/*			groupSelect+="";
+*/			$('#groupSelect').append(groupSelect);
 			$('#groupSelect').change(function(){
 				//当选中第一项（移动至）则直接退出
 				if($('#groupSelect').val()==0)
@@ -43,6 +43,10 @@ $(function(){
 			*显示人员信息
 			*/
 			$('.showList').click(function(){
+				if($(this).attr('value')==0){
+					return;
+				}
+
 				var info = $(this).parent().parent().next();
 /*				alert(info.find("div").html());
 				return;*/
@@ -58,7 +62,7 @@ $(function(){
 	  				var str="<thead><th>"+checkAll+"</th><th>姓名</th><th>学号</th><th>班级</th><th>电话</th><th>E-mail</th><th>qq</th><th>地址</th></thead>";
 	  				$.each(data,function(i,item){
 	  					
-	  					 str+="<tr><th><input class='checkbox' name='ids[]' type='checkbox' value='"+item.id+"'></th><th>" + item.name + "</th><th>" + item.stu_id    + "</th><th>" + item.class+ "</th><th>" +item.phone+ "</th><th>"+item.email+ "</th><th>"+item.qq+ "</th><th>"+item.address + "</th></tr>";
+	  					 str+="<tr><th><input class='checkbox' name='ids[]' type='checkbox' value='"+item.id+"'></th><th>" + item.name + "</th><th>" + item.stu_id    + "</th><th>" + item.class+ "</th><th>" +item.phone+ "</th><th>"+item.email+ "</th><th>"+item.qq+ "</th><th class='address'>"+item.address + "</th></tr>";
 	  				});
 					info.find(".info").html(str);
 				});
@@ -98,7 +102,10 @@ $(function(){
 						var url = $(this).attr('url');
 						url += "/"+parent.find('input[type=text]').val();
 						$.get(url,function(data){
-							alert(data.msg);
+							//alert(data.msg);
+							if(data.code){		//当返回code不为0 时，弹出提示信息
+								alert(data.msg);
+							}
 						});
 					}
 				
@@ -139,9 +146,10 @@ $(function(){
 				if(name==null){
 					return;
 				}
-				var url = "{{url('/admin/createGroup')}}"+"/"+name;
+
+				var url =$(this).attr('url') +"/"+name;
 				$.get(url, function(data){
-					alert(data.msg);
+					//alert(data.msg);
 					window.location.reload();
 				});
 			});
