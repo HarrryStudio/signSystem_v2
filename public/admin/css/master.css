@@ -22,12 +22,16 @@ html{
 
 #header .img-box{
 	float:left;
+	height: 56px;
+	margin-left: 13px;
 }
 
 #mainbav{
+
 }
 
 #mainbav ul{
+	margin-left: 15px;
 	float: left;
 	font-size: 1.5rem;
 	font-weight: 800;

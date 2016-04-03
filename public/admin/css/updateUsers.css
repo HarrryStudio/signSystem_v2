@@ -6,7 +6,7 @@
 
 /*整个内容快*/
 #updateUser {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -14,11 +14,12 @@
 #title {
     text-align: center;
     font-weight: 100;
+    color: rgba(91, 90, 91, 1);
 }
 
 /*文本框组包裹*/
 #info-wrap {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     margin-top: 30px;
 }
@@ -27,6 +28,7 @@
 #info-table {
     margin: 0 auto;
     text-align: center;
+    text-align: left;
 }
 
 #info-table tbody tr {
@@ -47,8 +49,8 @@
     width: 80px;
     height: 30px;
     letter-spacing:1px;
-    color: #41788c;
-    border: 1px solid #6fb1c7;
+    color: #ffffff;
+    /*border: 1px solid #6fb1c7;*/
     background-image: -moz-linear-gradient(#aae5f7, #73d0f1);
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#73d0f1), to(#aae5f7));
     background-image: -webkit-linear-gradient(#aae5f7, #73d0f1);

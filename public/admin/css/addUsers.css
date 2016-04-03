@@ -6,7 +6,7 @@
 
 /*整个内容快*/
 #addUser {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -14,6 +14,7 @@
 #title {
     text-align: center;
     font-weight: 100;
+    color: rgba(91, 90, 91, 1);
 }
 
 /*文本框组包裹*/
@@ -26,7 +27,7 @@
 /*用户信息表格*/
 #info-table {
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 #info-table tbody tr {

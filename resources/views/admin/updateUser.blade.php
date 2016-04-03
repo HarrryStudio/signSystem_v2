@@ -86,6 +86,4 @@
     <h4>平民</h4>
 @endif--}}
 
-
-
 @endsection
