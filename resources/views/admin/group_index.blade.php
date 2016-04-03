@@ -10,9 +10,16 @@
 @stop
 
 @section('content')
-	<h1 id="title" style="padding-left:20%;">所有组别：</h1>	
-	<div id="toolbar" style="padding-left:30%;">
-		<button id="createGroup">创建组</button>
+	<h1 id="title">所有组别：</h1>	
+	<div id="toolbar" class="clearfix">
+		<span style="float:left;">
+			<a id="createGroup" class="btn btn-success" url="{{url('/admin/createGroup')}}">创建组</a>
+		</span>
+		<span style="float:right;">
+			<label>所选人员移动至：</label>
+			<select id='groupSelect'> 
+			</select>
+		</span>
 	</div>
 	<table id="list">
 		<thead>
@@ -35,9 +42,9 @@
 						<span class="count">{{$group -> counts}}</span>
 					</th>
 					<th>
-			   		<button class="resetName" url="{{url('/admin/updateGroup')}}/{{$group->id}}">编辑</button>
-			   		<button class="showList" value="{{$group -> counts}}" url="{{url('/admin/selectGroupUsers')}}/{{$group->id}}">查看人员</button>
-			   		<button class="delect" value="{{$group -> counts}}" disabled=true url="{{url('/admin/delGroup')}}/{{$group->id}}">删除该组</button>
+			   		<a class="btn operation resetName" url="{{url('/admin/updateGroup')}}/{{$group->id}}">编辑</a>
+			   		<a class="btn operation showList" value="{{$group -> counts}}" url="{{url('/admin/selectGroupUsers')}}/{{$group->id}}">查看人员</a>
+			   		<a class="btn operation delect" value="{{$group -> counts}}" disabled=true url="{{url('/admin/delGroup')}}/{{$group->id}}">删除该组</a>
 					</th>
 				</tr>
 			   	<tr >
@@ -49,7 +56,4 @@
 			@endforeach
 		</tbody>
 	</table>
-	<script>
-
-	</script>
 @stop
