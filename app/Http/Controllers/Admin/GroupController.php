@@ -17,7 +17,7 @@ define('CREATE_ERROR', 0xA101);    // 添加失败
 define('UPDATE_ERROR', 0xA102);    // 更新失败
 define('DELETE_ERROR', 0xA103);    // 删除失败
 
-class GroupController extends Controller
+class GroupController extends AdminController
 {
     /**
     *组别首页，显示级别组别信息

@@ -15,12 +15,9 @@ class IndexController  extends AdminController
     public function index(){
     	
         $users= DB::select('select count(*) as count from users');
-    	/*$users = array(
-    			'1'=>array('name' => "wml"),
-    			'2'=>array('name' => "lb"),
-    			'3'=>array('name' => "ldh")
-    		);*/
-        return view('admin.index', ['users' => $users['0']]);
+        $groups= DB::select('select count(*) as count from groups');
+    	
+        return view('admin.index', ['users_count' => $users['0']->count,'groups_count' => $groups['0']->count]);
 
         
         //return $users;
