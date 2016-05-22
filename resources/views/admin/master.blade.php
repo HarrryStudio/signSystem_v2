@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
-	{{--<link rel="stylesheet" href="../admin/css/master.css">--}}
+    <link rel="stylesheet" href="{{asset('static/base.css')}}">
 	<link rel="stylesheet" href="{{asset('admin/css/master.css')}}">
-	<link rel="stylesheet" href="{{asset('static/Font-Awesome/css/font-awesome.css')}}">
+	<link rel="stylesheet" href="{{asset('static/Font-Awesome/css/font-awesome.min.css')}}">
     <script type="text/javascript" src="{{asset('static/jquery-1.10.2.min.js')}}"></script>
     @section('head')
 		{{--myself link--}}
     @show
 </head>
 <body>
-	<header id="header">
+	<header id="header" class="text-center">
 		<div class="img-box">
 			<img src="{{asset('admin/img/logo.png')}}" alt="logo">
 			<div style="clear: both"></div>

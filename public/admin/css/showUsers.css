@@ -1,112 +1,16 @@
-*{
-    font-family: "Microsoft YaHei";
-    padding:0;
-    margin: 0;
-}
-a{
-    text-decoration: none;
-}
-.clear{
-    clear: both;
-}
-#web-title{
-    text-align: center;
-    font-weight: 100;
-    color: rgba(91, 90, 91, 1);
-}
-#info-warp{
-    width:100%;
-}
-#toolbar{
-    width:70%;
-    height: 55px;
-    margin: 0 auto;
-    /*background: rgba(184, 89, 102, 1);*/
+.table thead.bordered-darkorange>tr>th {
+    border-bottom: 3px solid #ed4e2a;
 }
 
-/*工具栏左侧的按钮*/
-#toolbar .left-wrap{
-    float: left;
-    /*background: rgba(68, 184, 61, 1);*/
-    height: 100%;
-    width:40%;
-    line-height: 55px;
-}
-.left-wrap a{
-    display: inline-block;
-    width: 72px;;
-    height: 36px;;
-    text-align: center;
-    line-height: 36px;
-    margin-right: 8px;
-    color: rgba(227, 232, 228, 1);
-    background-color: rgba(23, 24, 23, 1);
-}
-.left-wrap a:hover{
-    color: rgba(254, 255, 254, 1);
-    background-color: rgba(77, 78, 77, 1);
+tbody>tr:nth-child(even){
+    background-color: #d9edf7;
 }
 
-/*工具栏右侧的收索框*/
-#toolbar .right-wrap{
-    float: right;
-    /*background-color: rgba(90, 71, 184, 1);*/
-    width: 55%;
-    height: 100%;
-}
-.right-wrap{
-    text-align: right;
-    line-height: 55px;
+table input[type=checkbox]{
+    width: 20px;
+    height: 20px;
 }
 
-.right-wrap .find{
-    height:28px;
-    border: 1px solid rgba(182, 183, 182, 1);
-    padding-left:4px;
-
-}
-
-.right-wrap #find-btn{
-    text-align: center;
-    display: inline-block;
-    line-height: 28px;
-    font-size: 12px;
-    width: 50px;
-    height: 28px;
-    background-color: rgba(33, 33, 33, 1);
-    color: rgba(255, 255, 255, 1);
-    margin-left: -5px;
-    border-top: 1px solid  rgba(33, 33, 33, 1);
-    border-bottom: 1px solid  rgba(33, 33, 33, 1);
-}
-#find-btn:hover{
-    color: rgba(254, 255, 254, 1);
-    background-color: rgba(77, 78, 77, 1);
-}
-
-table{
-    width: 70%;
-    margin: 0 auto;
-}
-table tbody tr{
-    height: 44px;
-    max-width: 1000px;
-}
-table tbody tr:first-child{
-    border-bottom-color: rgba(23, 22, 23, 1);
-    border-left-color: rgba(184, 183, 184, 0.5);
-    border-right-color: rgba(184, 183, 184, 0.5);
-}
-table tbody tr th span{
-    padding:0 15px;
-    color: #fff;
-}
-table tbody tr td span{
-    padding:0 10px;
-}
-table tbody tr td a{
-    color: #000;
-}
 #page{
     width: 100%;
     margin-bottom: 50px;
